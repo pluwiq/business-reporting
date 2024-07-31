@@ -9,9 +9,10 @@ class ThirdReport < BaseReport
   end
 
   def generate
-    filtered_data = @data.select { |row| row[:city] == @city }
-    sorted_data = filtered_data.sort_by { |row| row[:revenue].to_i }
-    top_companies = sorted_data.first(10)
-    top_companies.map { |row| row[:company] }
+    @data
+      .select { |row| row[:city] == @city }
+      .sort_by { |row| row[:revenue].to_i }
+      .first(10)
+      .map { |row| row[:company] }
   end
 end

@@ -11,7 +11,7 @@ class CSVExporter < BaseExporter
       when Hash
         export_hash(csv:)
       else
-        raise "Unexpected data format for CSV export"
+        raise 'Unexpected data format for CSV export'
       end
     end
   end
@@ -25,7 +25,7 @@ class CSVExporter < BaseExporter
     when String
       export_array_of_strings(csv:)
     else
-      raise "Unexpected array format for CSV export"
+      raise 'Unexpected array format for CSV export'
     end
   end
 

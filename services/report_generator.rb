@@ -8,9 +8,12 @@ class ReportGenerator
   end
 
   def generate_and_export(report_type:, export_type:, data_file:, export_file:, **additional_args)
-    data = @data_loader.load_data(file_path: data_file)
-    report = @reports[report_type].new(data: data, **additional_args)
-    report_data = report.generate
-    @exporters[export_type].new(report_data: report_data).export(file_path: export_file)
+    @exporters[export_type]
+      .new(
+        report_data: @reports[report_type]
+                       .new(data: @data_loader.load_data(file_path: data_file), **additional_args)
+                       .generate
+      )
+      .export(file_path: export_file)
   end
 end
