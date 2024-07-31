@@ -1,19 +1,16 @@
-# frozen_string_literal: true
-
 class BaseReport
   def initialize(data:)
-    unless data.is_a?(Array) && data.all? { |row| row.is_a?(Hash) }
-      raise ArgumentError, "Data must be an array of hashes"
-    end
-
+    validate_data(data:)
     @data = data
   end
 
-  def generate
-    raise NotImplementedError, "Subclasses must implement the generate method"
-  end
-
   protected
+
+  def validate_data(data:)
+    unless data.is_a?(Array) && data.all? { |row| row.is_a?(Hash) }
+      raise ArgumentError, 'Data must be an array of hashes'
+    end
+  end
 
   def filter_data(key:, value:)
     @data.select { |row| row[key.to_sym] == value }

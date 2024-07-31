@@ -4,14 +4,8 @@ require 'csv'
 
 class DataLoader
   def self.load_data(file_path:)
-    unless File.exist?(file_path)
-      raise "File not found: #{file_path}"
-    end
+    raise "File not found: #{file_path}" unless File.exist?(file_path)
 
-    data = []
-    CSV.foreach(file_path, headers: true, header_converters: :symbol) do |row|
-      data << row.to_h
-    end
-    data
+    CSV.read(file_path, headers: true, header_converters: :symbol).map(&:to_h)
   end
 end

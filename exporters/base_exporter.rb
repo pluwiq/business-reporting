@@ -6,6 +6,6 @@ class BaseExporter
   end
 
   def export(file_path:)
-    raise NotImplementedError, "Subclasses must implement the export method"
+    raise NotImplementedError, 'Subclasses must implement the export method'
   end
 end
