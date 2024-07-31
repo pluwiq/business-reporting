@@ -16,20 +16,26 @@ DATA_FILE = 'data/data.csv'
 EXPORT_FILE_JSON = 'report.json'
 EXPORT_FILE_CSV = 'report.csv'
 
-logger = Logger.new('application.log')
-logger.level = Logger::INFO
-
-reports = {
+REPORTS = {
   first_report: FirstReport,
   second_report: SecondReport,
   third_report: ThirdReport
 }
 
-exporters = {
+EXPORTERS = {
   json: JSONExporter,
   csv: CSVExporter
 }
 
-report_generator = ReportGenerator.new(data_loader: DataLoader, reports:, exporters:)
+logger = Logger.new('application.log')
+logger.level = Logger::INFO
 
-BusinessWorker.run_report_generation(report_generator, logger, DATA_FILE, EXPORT_FILE_JSON, EXPORT_FILE_CSV)
+report_generator = ReportGenerator.new(data_loader: DataLoader, reports: REPORTS, exporters: EXPORTERS)
+
+BusinessWorker.run_report_generation(
+  report_generator:,
+  logger:,
+  data_file: DATA_FILE,
+  export_file_json: EXPORT_FILE_JSON,
+  export_file_csv: EXPORT_FILE_CSV
+)

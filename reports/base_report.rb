@@ -1,15 +1,15 @@
 class BaseReport
   def initialize(data:)
-    validate_data(data:)
-    @data = data
+    @data = validate_data(data:)
   end
 
-  protected
+  private
 
   def validate_data(data:)
-    unless data.is_a?(Array) && data.all? { |row| row.is_a?(Hash) }
+    if !data.is_a?(Array) || !data.all? { |row| row.is_a?(Hash) }
       raise ArgumentError, 'Data must be an array of hashes'
     end
+    data
   end
 
   def filter_data(key:, value:)
