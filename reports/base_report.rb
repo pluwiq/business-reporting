@@ -6,7 +6,7 @@ class BaseReport
   private
 
   def validate_data(data:)
-    if !data.is_a?(Array) || !data.all? { |row| row.is_a?(Hash) }
+    if !data.is_a?(Array) || data.none? { |row| row.is_a?(Hash) }
       raise ArgumentError, 'Data must be an array of hashes'
     end
     data

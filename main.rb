@@ -12,20 +12,20 @@ require_relative 'exporters/csv_exporter'
 require_relative 'business_worker'
 require 'logger'
 
-DATA_FILE = 'data/data.csv'
-EXPORT_FILE_JSON = 'report.json'
-EXPORT_FILE_CSV = 'report.csv'
+DATA_FILE = 'data/data.csv'.freeze
+EXPORT_FILE_JSON = 'report.json'.freeze
+EXPORT_FILE_CSV = 'report.csv'.freeze
 
 REPORTS = {
   first_report: FirstReport,
   second_report: SecondReport,
   third_report: ThirdReport
-}
+}.freeze
 
 EXPORTERS = {
   json: JSONExporter,
   csv: CSVExporter
-}
+}.freeze
 
 logger = Logger.new('application.log')
 logger.level = Logger::INFO
