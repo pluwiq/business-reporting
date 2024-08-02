@@ -54,7 +54,6 @@ module BusinessWorker
   end
 
   def self.display_menu
-
     [choose_report_type, choose_export_format]
   end
 
