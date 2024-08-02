@@ -4,7 +4,7 @@ require_relative 'base_report'
 
 class FirstReport < BaseReport
   def initialize(data:, min_employees:)
-    super(data: data)
+    super(data:)
     @min_employees = min_employees
   end
 

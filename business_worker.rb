@@ -5,10 +5,9 @@ module BusinessWorker
     loop do
       print 'Enter the minimum number of employees: '
       input = gets.chomp
-      error_message = error_message(input:)
       return input.to_i if validate_input(input:)
 
-      puts error_message
+      puts error_message(input:)
     end
   end
 
@@ -17,8 +16,11 @@ module BusinessWorker
   end
 
   def self.error_message(input:)
-    return 'Error: Please enter a valid number.' unless input =~ /^\d+$/
-    return 'Error: The minimum number of employees must be 100 or more. Please try again.' if input.to_i < 100
+    if input !~ /^\d+$/
+      'Error: Please enter a valid number.'
+    elsif input.to_i < 100
+      'Error: The minimum number of employees must be 100 or more. Please try again.'
+    end
   end
 
   def self.get_additional_args(report_type:)
@@ -52,9 +54,8 @@ module BusinessWorker
   end
 
   def self.display_menu
-    report_type = choose_report_type
-    export_type = choose_export_format
-    [report_type, export_type]
+
+    [choose_report_type, choose_export_format]
   end
 
   def self.choose_report_type
